@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Logger.obj",
+            "outputs": [
+                "x64\\Debug\\Logger.h_74BFAC8A22B777C0.ifc.dt.module.json",
+                "x64\\Debug\\Logger.h_74BFAC8A22B777C0.ifc.dt.d.json",
+                "x64\\Debug\\Logger.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "E:\\Visual Studio Projects\\VulkanGame\\VulkanGame\\src\\Debugging\\Logger.h",
+                    "source-path": "e:\\visual studio projects\\vulkangame\\vulkangame\\src\\debugging\\logger.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
