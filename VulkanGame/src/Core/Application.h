@@ -1,4 +1,5 @@
 #pragma once
+#include "Window.h"
 
 namespace Game
 {
@@ -14,7 +15,7 @@ namespace Game
 	struct ApplicationSpecifications
 	{
 		ApplicationSpecifications() = default;
-		ApplicationSpecifications(int width, int height, const char* title, CommandArgs args, bool customTitlebar = false) : WindowWidth(width), WindowHeight(height), Title(title), API(api), CustomRenderer(customRenderer), Args(args), CustomTitlebar(customTitlebar) {}
+		ApplicationSpecifications(int width, int height, const char* title, CommandArgs args, bool customTitlebar = false) : WindowWidth(width), WindowHeight(height), Title(title), Args(args), CustomTitlebar(customTitlebar) {}
 
 		uint32_t WindowWidth;
 		uint32_t WindowHeight;
@@ -38,17 +39,13 @@ namespace Game
 
 		void Run();
 
-		static bool IsApplicationRunning() { return ApplicationRunning; }
-
 	protected:
 		static inline Application* instance;
 
 		ApplicationSpecifications specs;
 		ScopeRef<Window> window;
 
-		bool isRunning = true;
 		bool isMinimized = false;
-		static inline bool ApplicationRunning = true;
 	};
 
 	Application* CreateApplication(CommandArgs args);

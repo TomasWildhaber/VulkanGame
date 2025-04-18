@@ -73,10 +73,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;DEBUG_CONFIG;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;DEBUG_CONFIG;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>src;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\glm\src;$(SolutionDir)VulkanGame\src;$(SolutionDir)vendor\GLFW\include;src</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -89,10 +91,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;RELESE_CONFIG;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;RELESE_CONFIG;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>src;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\glm\src;$(SolutionDir)VulkanGame\src;$(SolutionDir)vendor\GLFW\include;src</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,10 +111,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;DISTRIBUTION_CONFIG;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;DISTRIBUTION_CONFIG;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>src;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\glm\src;$(SolutionDir)VulkanGame\src;$(SolutionDir)vendor\GLFW\include;src</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,19 +126,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="src\Debugging\Logger.h" />
-    <ClCompile Include="src\Utilities\Memory.cpp" />
+    <ClCompile Include="src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="src\Debugging\Logger.h" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\EntryPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Core\Input.h" />
+    <ClInclude Include="src\Core\KeyCodes.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Debugging\Log.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Utilities\Memory.h" />
     <ClInclude Include="src\Core\Application.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\vendor\glfw\GLFW.vcxproj">
+      <Project>{f5a53f04-9096-4de8-bcc9-da5747e08fbe}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

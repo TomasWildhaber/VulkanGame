@@ -1,11 +1,11 @@
-#include "../pch.h"
+#include "pch.h"
 #ifdef PLATFORM_WINDOWS
 
 #include "Core/Input.h"
 #include "Core/Application.h"
 #include "GLFW/glfw3.h"
 
-namespace Rocket
+namespace Game
 {
 	bool Input::IsKeyPressed(int keyCode)
 	{

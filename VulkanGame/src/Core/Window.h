@@ -1,10 +1,10 @@
 #pragma once
 #include "Utilities/Memory.h"
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 struct GLFWwindow;
 
-namespace Rocket
+namespace Game
 {
 	class Window
 	{
@@ -19,6 +19,8 @@ namespace Rocket
 		virtual inline glm::vec2 GetCurrentResolution() const = 0;
 		virtual inline glm::vec2 GetCurrentPosition() const = 0;
 		virtual inline void* GetNativeWindow() const = 0;
+
+		virtual inline bool IsRunning() const = 0;
 
 		virtual inline void SetVSync(bool Enabled) = 0;
 		virtual inline bool IsVSync() const = 0;

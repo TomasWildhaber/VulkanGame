@@ -1,9 +1,9 @@
-#include "../pch.h"
+#include "pch.h"
 #include "Application.h"
 #include "Debugging/Log.h"
 #include "GLFW/glfw3.h"
 
-namespace Rocket
+namespace Game
 {
 	Application::Application(ApplicationSpecifications& _specs) : specs(_specs)
 	{
@@ -22,7 +22,7 @@ namespace Rocket
 
 	void Application::Run()
 	{
-		while (isRunning)
+		while (window->IsRunning())
 		{
 			window->OnUpdate();
 			window->OnRender();

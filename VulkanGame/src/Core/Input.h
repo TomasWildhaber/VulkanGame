@@ -2,7 +2,7 @@
 #include "KeyCodes.h"
 #include <glm/glm.hpp>
 
-namespace Rocket
+namespace Game
 {
 	class Input
 	{

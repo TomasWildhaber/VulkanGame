@@ -1,10 +1,9 @@
 #pragma once
 #include "Core/Window.h"
 
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-namespace Rocket
+namespace Game
 {
 	class WindowsWindow : public Window
 	{
@@ -21,6 +20,8 @@ namespace Rocket
 		virtual inline void OnUpdate() const override;
 		virtual inline void OnRender() const override;
 
+		virtual inline bool IsRunning() const override { return !glfwWindowShouldClose(window); }
+
 		virtual inline void SetVSync(bool Enabled) override { glfwSwapInterval(Enabled); vsync = Enabled; }
 		virtual inline bool IsVSync() const override { return vsync; }
 		virtual inline bool IsMaximized() const override { return glfwGetWindowAttrib(window, GLFW_MAXIMIZED); }
@@ -28,15 +29,11 @@ namespace Rocket
 		virtual inline void MaximizeWindow() const override { glfwMaximizeWindow(window); }
 		virtual inline void RestoreWindow() const override { glfwRestoreWindow(window); }
 		virtual inline void MinimizeWindow() const override { glfwIconifyWindow(window); }
-		virtual inline void CloseWindow() const override { WindowClosedEvent event; Data.CallbackFunction(event); }
+		virtual inline void CloseWindow() const override { glfwSetWindowShouldClose(window, GLFW_TRUE); }
 
 		virtual inline void ShowWindow() const override { glfwShowWindow(window); }
 		virtual inline void HideWindow() const override { glfwHideWindow(window); }
 	private:
-		inline void const initGL();
-		inline void const initGlad();
-		inline void setCallbacks();
-
 		GLFWwindow* window;
 		bool vsync;
 	};
